@@ -5,8 +5,11 @@
     <span class="site-title" style="font-size:1.6rem; font-weight:700; color:#1e3a8a; cursor:pointer;" onclick="location.href='/'">The Cabinet</span>
 
     <div style="position:relative;">
-        <button id="menuBtn" style="background:#f0f2f5; color:#333; border:1px solid #ddd; padding:0.5rem 1.2rem; border-radius:8px; cursor:pointer; font-weight:600; transition: all 0.2s ease;">Departments ▼</button>
-        <ul id="dropdown" style="display:none; position:absolute; right:0; background:white; color:black; list-style:none; padding:0; margin-top:0.6rem; border-radius:8px; box-shadow:0 8px 30px rgba(0,0,0,0.1); min-width:250px; z-index: 1000; overflow:hidden; border: 1px solid #eee;">
+        <button id="menuBtn" style="background:#f0f2f5; color:#333; border:1px solid #ddd; padding:0.5rem 1.2rem; border-radius:8px; cursor:pointer; font-weight:600; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;">
+            Departments
+            <span id="dropdown-arrow" class="arrow">▼</span>
+        </button>
+        <ul id="dropdown" style="position:absolute; right:0; background:white; color:black; list-style:none; padding:0; margin-top:0.6rem; border-radius:8px; box-shadow:0 8px 30px rgba(0,0,0,0.1); min-width:250px; z-index: 1000; overflow:hidden; border: 1px solid #eee;">
             <li><a href="/agriculture" class="dropItem">Agriculture</a></li>
             <li><a href="/labor" class="dropItem">Labor</a></li>
             <li><a href="/defense" class="dropItem">Defense</a></li>
@@ -28,15 +31,42 @@
 
 <style>
     body {
-        background-color: #f8f9fa; /* Lighter background to feel less 'heavy' */
+        background-color: #f8f9fa;
         margin: 0;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
+    /* Dropdown Animation Base State */
+    #dropdown {
+        /* Start hidden and collapsed */
+        max-height: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: max-height 0.4s ease-out, opacity 0.3s ease-in-out, visibility 0.4s;
+    }
+
+        /* Dropdown Animation Active State */
+        #dropdown.is-active {
+            /* FIXED: Increased max-height to ensure all 15 list items are visible */
+            max-height: 1000px;
+            opacity: 1;
+            visibility: visible;
+        }
+
+    .arrow {
+        display: inline-block;
+        transition: transform 0.3s ease-in-out;
+        font-size: 0.9em;
+    }
+
+        .arrow.is-open {
+            transform: rotate(180deg);
+        }
+
     .dropItem {
         display: block;
         padding: 0.75rem 1.5rem;
-        color: #444; /* Slightly softer text color */
+        color: #444;
         text-decoration: none;
         white-space: nowrap;
         transition: background-color 0.2s ease, color 0.2s ease;
@@ -44,12 +74,12 @@
     }
 
         .dropItem:hover {
-            background-color: #007bff; /* Use a brighter, standard blue hover */
+            background-color: #007bff;
             color: white;
         }
 
     #menuBtn:hover {
-        background-color: #e9ecef; /* Lighter hover for a light button */
+        background-color: #e9ecef;
         border-color: #ccc;
     }
 
@@ -58,7 +88,7 @@
     }
 
     .site-title:hover {
-        color: #0056b3; /* Darker blue on hover */
+        color: #0056b3;
     }
 </style>
 
@@ -66,13 +96,19 @@
     document.addEventListener('DOMContentLoaded', () => {
         const btn = document.getElementById('menuBtn');
         const dropdown = document.getElementById('dropdown');
+        const arrow = document.getElementById('dropdown-arrow');
+
         btn.onclick = () => {
-            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            const isActive = dropdown.classList.contains('is-active');
+            dropdown.classList.toggle('is-active', !isActive);
+            arrow.classList.toggle('is-open', !isActive);
         };
+
         // Bonus: Close dropdown if clicking outside
         document.addEventListener('click', (e) => {
             if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
-                dropdown.style.display = 'none';
+                dropdown.classList.remove('is-active');
+                arrow.classList.remove('is-open');
             }
         });
     });
