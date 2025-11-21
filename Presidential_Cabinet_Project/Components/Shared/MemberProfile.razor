@@ -1,6 +1,6 @@
 ﻿<div class="profile-container">
     <div class="profile-sidebar">
-        <img src="@ImageUrl" alt="Official portrait of @MemberName">
+        <img src="@ImageUrl" alt="Official portrait of @MemberName" class="@ImageClass">
         <h3>@MemberName</h3>
         <p>@MemberTitle</p>
     </div>
@@ -25,4 +25,7 @@
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string? ImageClass { get; set; } // New parameter for optional image class
 }

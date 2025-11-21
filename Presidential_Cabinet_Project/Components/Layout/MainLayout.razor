@@ -1,12 +1,12 @@
 ﻿@inherits LayoutComponentBase
 
-<nav style="background:#222; padding:1rem; color:white; display:flex; justify-content:space-between; align-items:center; font-family: 'Segoe UI', sans-serif; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+<nav style="background:white; padding:1rem 2rem; color:#333; display:flex; justify-content:space-between; align-items:center; font-family: 'Segoe UI', sans-serif; border-bottom: 1px solid #ddd; box-shadow: 0 1px 10px rgba(0,0,0,0.05);">
 
-    <span class="site-title" style="font-size:1.5rem; font-weight:bold; cursor:pointer;" onclick="location.href='/'">My Cabinet</span>
+    <span class="site-title" style="font-size:1.6rem; font-weight:700; color:#1e3a8a; cursor:pointer;" onclick="location.href='/'">The Cabinet</span>
 
     <div style="position:relative;">
-        <button id="menuBtn" style="background:#444; color:white; border:none; padding:0.5rem 1rem; border-radius:6px; cursor:pointer; transition: background-color 0.2s ease;">Departments ▼</button>
-        <ul id="dropdown" style="display:none; position:absolute; right:0; background:white; color:black; list-style:none; padding:0; margin-top:0.5rem; border-radius:6px; box-shadow:0 4px 10px rgba(0,0,0,0.15); min-width:220px; z-index: 1000; overflow:hidden;">
+        <button id="menuBtn" style="background:#f0f2f5; color:#333; border:1px solid #ddd; padding:0.5rem 1.2rem; border-radius:8px; cursor:pointer; font-weight:600; transition: all 0.2s ease;">Departments ▼</button>
+        <ul id="dropdown" style="display:none; position:absolute; right:0; background:white; color:black; list-style:none; padding:0; margin-top:0.6rem; border-radius:8px; box-shadow:0 8px 30px rgba(0,0,0,0.1); min-width:250px; z-index: 1000; overflow:hidden; border: 1px solid #eee;">
             <li><a href="/agriculture" class="dropItem">Agriculture</a></li>
             <li><a href="/labor" class="dropItem">Labor</a></li>
             <li><a href="/defense" class="dropItem">Defense</a></li>
@@ -28,36 +28,41 @@
 
 <style>
     body {
-        background-color: #f0f2f5; 
+        background-color: #f8f9fa; /* Lighter background to feel less 'heavy' */
         margin: 0;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     .dropItem {
         display: block;
-        padding: 0.75rem 1.25rem;
-        color: #333;
+        padding: 0.75rem 1.5rem;
+        color: #444; /* Slightly softer text color */
         text-decoration: none;
         white-space: nowrap;
         transition: background-color 0.2s ease, color 0.2s ease;
+        font-size: 1rem;
     }
 
         .dropItem:hover {
-            background-color: #004a99;
+            background-color: #007bff; /* Use a brighter, standard blue hover */
             color: white;
         }
 
     #menuBtn:hover {
-        background-color: #555;
+        background-color: #e9ecef; /* Lighter hover for a light button */
+        border-color: #ccc;
+    }
+
+    #menuBtn:active {
+        background-color: #dee2e6;
     }
 
     .site-title:hover {
-        color: #ccc;
+        color: #0056b3; /* Darker blue on hover */
     }
 </style>
 
 <script>
-    // Your JavaScript is perfect, no changes needed!
     document.addEventListener('DOMContentLoaded', () => {
         const btn = document.getElementById('menuBtn');
         const dropdown = document.getElementById('dropdown');
