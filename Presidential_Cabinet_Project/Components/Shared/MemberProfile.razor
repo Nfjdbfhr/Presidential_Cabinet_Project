@@ -5,7 +5,14 @@
         <p>@MemberTitle</p>
     </div>
     <div class="profile-main-content">
-        <h2>About the Secretary</h2>
+        @if (MemberTitle.StartsWith("A"))
+        {
+            <h2>About the General</h2>
+        }
+        else
+        {
+            <h2>About the Secretary</h2>
+        }
         <hr>
         <div class="profile-explanation">
             @ChildContent
