@@ -1,0 +1,78 @@
+﻿@inherits LayoutComponentBase
+
+<nav style="background:#222; padding:1rem; color:white; display:flex; justify-content:space-between; align-items:center; font-family: 'Segoe UI', sans-serif; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+
+    <span class="site-title" style="font-size:1.5rem; font-weight:bold; cursor:pointer;" onclick="location.href='/'">My Cabinet</span>
+
+    <div style="position:relative;">
+        <button id="menuBtn" style="background:#444; color:white; border:none; padding:0.5rem 1rem; border-radius:6px; cursor:pointer; transition: background-color 0.2s ease;">Departments ▼</button>
+        <ul id="dropdown" style="display:none; position:absolute; right:0; background:white; color:black; list-style:none; padding:0; margin-top:0.5rem; border-radius:6px; box-shadow:0 4px 10px rgba(0,0,0,0.15); min-width:220px; z-index: 1000; overflow:hidden;">
+            <li><a href="/agriculture" class="dropItem">Agriculture</a></li>
+            <li><a href="/labor" class="dropItem">Labor</a></li>
+            <li><a href="/defense" class="dropItem">Defense</a></li>
+            <li><a href="/justice" class="dropItem">Justice</a></li>
+            <li><a href="/education" class="dropItem">Education</a></li>
+            <li><a href="/HousingUrbanDev" class="dropItem">Housing & Urban Development</a></li>
+            <li><a href="/HealthHumanServ" class="dropItem">Health & Human Services</a></li>
+            <li><a href="/homeland" class="dropItem">Homeland Security</a></li>
+            <li><a href="/interior" class="dropItem">Interior</a></li>
+            <li><a href="/energy" class="dropItem">Energy</a></li>
+            <li><a href="/transportation" class="dropItem">Transportation</a></li>
+            <li><a href="/state" class="dropItem">State</a></li>
+            <li><a href="/commerce" class="dropItem">Commerce</a></li>
+            <li><a href="/treasury" class="dropItem">Treasury</a></li>
+            <li><a href="/veterans" class="dropItem">Veterans Affairs</a></li>
+        </ul>
+    </div>
+</nav>
+
+<style>
+    body {
+        background-color: #f0f2f5; 
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .dropItem {
+        display: block;
+        padding: 0.75rem 1.25rem;
+        color: #333;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+        .dropItem:hover {
+            background-color: #004a99;
+            color: white;
+        }
+
+    #menuBtn:hover {
+        background-color: #555;
+    }
+
+    .site-title:hover {
+        color: #ccc;
+    }
+</style>
+
+<script>
+    // Your JavaScript is perfect, no changes needed!
+    document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('menuBtn');
+        const dropdown = document.getElementById('dropdown');
+        btn.onclick = () => {
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        };
+        // Bonus: Close dropdown if clicking outside
+        document.addEventListener('click', (e) => {
+            if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+<div class="main-content" style="padding: 1rem 2rem;">
+    @Body
+</div>

@@ -1,0 +1,28 @@
+﻿<div class="profile-container">
+    <div class="profile-sidebar">
+        <img src="@ImageUrl" alt="Official portrait of @MemberName">
+        <h3>@MemberName</h3>
+        <p>@MemberTitle</p>
+    </div>
+    <div class="profile-main-content">
+        <h2>About the Secretary</h2>
+        <hr>
+        <div class="profile-explanation">
+            @ChildContent
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string MemberName { get; set; }
+
+    [Parameter]
+    public string MemberTitle { get; set; }
+
+    [Parameter]
+    public string ImageUrl { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
